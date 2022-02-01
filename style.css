@@ -1,16 +1,17 @@
 /**** Custom Properties ****/
 
 :root {
-  --first-color: #4f024c;
-  --first-alpha75-color: rgba(79, 2, 76, 0.75);
-  --first-alpha50-color: rgba(79, 2, 76, 0.5);
-  --first-alpha25-color: rgba(79, 2, 76, 0.25);
-  --second-color: #00ffff;
-  --second-alpha75-color: rgba(0, 255, 255, 0.75);
-  --second-alpha25-color: rgba(0, 255, 255, 0.25);
-  --third-color: #faff00;
-  --third-alpha75-color: rgba(250, 255, 0, 0.75);
-  --third-alpha25-color: rgba(250, 255, 0, 0.25);
+  --first-color: rgba(255, 217, 15, 1);
+  --first-alpha75-color: rgba(255, 217, 15, 0.75);
+  --first-alpha50-color: rgba(255, 217, 15, 0.5);
+  --first-alpha25-color: rgba(255, 217, 15, 0.25);
+  --second-color: rgba(0, 79, 248, 1);
+  --second-alpha75-color: rgba(0, 79, 248, 0.75);
+  --second-alpha25-color: rgba(0, 79, 248, 0.25);
+  --third-color: #ff0000;
+  --third-alpha75-color: rgba(255, 0, 0, 0.75);
+  --third-alpha25-color: rgba(255, 0, 0, 0.25);
+  --behind-color: rgba(255, 152, 152, 1);
   --link-color: #509ee3;
   --title-color: #333333;
   --text-color: #222222;
@@ -23,7 +24,7 @@
   --black-alpha50-color: rgba(0, 0, 0, 0.5);
   --font: "raleway", "sans-serif";
   --max-width: 1200px;
-  --header-height: 4rem;
+  --header-height: 3rem;
   --box-shadow: 0.25rem 0.25rem 1rem rgba(58, 32, 32, 0.5);
 }
 /**** Reset ****/
@@ -95,5 +96,414 @@ p {
 }
 
 /**** Components ****/
+
+/* header */
+
+.springfield {
+  color: var(--first-color);
+}
+
+.header {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 999;
+  width: 100vw;
+  height: var(--header-height);
+  background-color: var(--third-color);
+}
+
+.header > .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.logo {
+  width: 2rem;
+  height: 2rem;
+  margin-left: 1rem;
+}
+
+.menu {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  bottom: var(--header-height);
+}
+
+.menu a {
+  text-decoration: none;
+  color: var(--black-color);
+  background-color: var(--second-color);
+  text-align: center;
+  font-size: 2rem;
+}
+
+.menu.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.menu-btn {
+  margin-right: 1rem;
+}
+
+.menu-btn svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .header {
+    top: 0;
+  }
+
+  .springfield {
+    margin-left: 2rem;
+  }
+
+  .menu-btn {
+    display: none;
+  }
+
+  .menu {
+    opacity: 1;
+    flex-direction: row;
+    justify-content: right;
+    position: static;
+    pointer-events: auto;
+  }
+
+  .menu a {
+    background-color: var(--third-color);
+    font-size: 1.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .menu a:hover {
+    color: var(--first-color);
+  }
+}
+
 /**** Utilities ****/
+
+.none {
+  display: none;
+}
+
 /**** Site Styles ****/
+
+/* grid */
+
+.section-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, auto);
+  justify-items: center;
+  grid-template-areas:
+    "principal principal principal principal principal principal"
+    "sec-1 sec-1 sec-2 sec-2 sec-3 sec-3"
+    "publi-1 publi-1 publi-1 publi-2 publi-2 publi-2"
+    "publi-sub publi-sub publi-sub publi-sub publi-sub publi-sub";
+}
+
+.noticia-principal {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--behind-color);
+  border: thick solid black;
+  grid-area: principal;
+}
+
+.noticia-principal img {
+  width: 80vw;
+  height: 50vh;
+  object-fit: cover;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 5rem;
+  display: block;
+}
+
+.noticia-principal h3 {
+  text-align: center;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+}
+
+.noticia-secundaria {
+  width: 100%;
+  height: 100%;
+  border: thick solid var(--first-color);
+  background-color: var(--behind-color);
+  object-fit: cover;
+  display: inline-block;
+}
+
+.noticia-secundaria img {
+  width: 85%;
+  height: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: thin solid black;
+  display: block;
+}
+.noticia-secundaria h4 {
+  text-align: center;
+  margin-top: 1rem;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+.sec-1 {
+  grid-area: sec-1;
+}
+.sec-2 {
+  grid-area: sec-2;
+}
+.sec-3 {
+  grid-area: sec-3;
+}
+.publicidad-1 {
+  grid-area: publi-1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 100px 100px;
+  width: 100%;
+  height: 100%;
+}
+
+.publicidad-1 img {
+  grid-row: span 2;
+  width: 100%;
+  height: 100%;
+  min-width: 50px;
+}
+
+.publicidad-1 {
+  background-color: var(--third-color);
+}
+.publicidad-1 h3,
+.publicidad-1 h4 {
+  text-align: center;
+  margin-top: 2rem;
+  color: var(--white-color);
+}
+
+.publicidad-2 {
+  grid-area: publi-2;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 100px 100px;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.publicidad-2 :first-child {
+  grid-column: 1 / 4;
+  grid-row: span 2;
+  width: 100%;
+  height: 100%;
+}
+
+.publicidad-2 :nth-child(2) {
+  grid-column: 4 / 7;
+  grid-row: span 2;
+  width: 100%;
+  height: 100%;
+}
+
+.publicidad-2 h3 {
+  -webkit-text-stroke: 1px black;
+  color: white;
+  grid-column: 3 / 5;
+  grid-row: 1 / 2;
+  margin-top: 1rem;
+  position: absolute;
+}
+
+.publicidad-sub {
+  grid-area: publi-sub;
+  width: 90vw;
+  height: 100%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
+  background-color: var(--first-color);
+  display: grid;
+  grid-template-columns: 20% 80%;
+  border: thick solid black;
+}
+
+.publicidad-sub svg {
+  display: inline;
+  grid-column: 1 / 2;
+  margin: auto;
+}
+.publicidad-sub h2 {
+  display: inline;
+  grid-column: 2 / 3;
+  text-align: center;
+  margin: auto;
+  font-size: 2rem;
+  color: white;
+}
+
+.publicidad-1 {
+  grid-area: publi-1;
+}
+.publicidad-2 {
+  grid-area: publi-2;
+}
+
+.section-title {
+  background-color: var(--second-color);
+  text-align: center;
+  position: sticky;
+  top: 0px;
+  z-index: 20;
+}
+
+.footer {
+  background-color: var(--first-color);
+  color: white;
+  margin-top: 2rem;
+  margin-bottom: var(--header-height);
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+}
+
+@media screen and (min-width: 1024px) {
+  body {
+    margin-top: 4rem;
+  }
+
+  .section-title {
+    top: calc(var(--header-height) + 1rem);
+    margin-bottom: 1rem;
+  }
+
+  .noticia-principal {
+    margin-top: 4rem;
+    width: 70%;
+    height: 60%;
+  }
+
+  .noticia-principal img {
+    width: 80%;
+    height: 50%;
+  }
+
+  .section-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 45vh);
+    justify-items: center;
+    grid-template-areas:
+      "publi-sub    principal    principal    principal    publi-1"
+      "publi-sub    sec-1         sec-2         sec-3      publi-2";
+    gap: 1rem;
+  }
+
+  .publicidad-sub {
+    width: 200px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 20% 80%;
+    height: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .publicidad-sub h2 {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    width: 15px;
+    word-wrap: break-word;
+    text-align: center;
+  }
+
+  .noticia-principal {
+    width: 60vw;
+    height: 100%;
+    margin-top: 0;
+  }
+
+  .noticia-principal img {
+    object-fit: cover;
+    margin-top: 2rem;
+    width: 60%;
+    height: 65%;
+  }
+
+  .publicidad-1 {
+    grid-template-rows: 50% 50%;
+    width: 200px;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .publicidad-1 img {
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+  }
+
+  .publicidad-1 h3,
+  .publicidad-1 h4 {
+    grid-column: 1 / 3;
+    grid-row: 2 / 3;
+    margin-top: 1rem;
+  }
+
+  .publicidad-1 h4 {
+    margin-top: 5rem;
+  }
+
+  .publicidad-2 {
+    grid-template-columns: 1fr;
+    grid-template-rows: 50% 50%;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    width: 200px;
+  }
+
+  .publicidad-2 :first-child {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+  }
+
+  .publicidad-2 :nth-child(2) {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+  }
+
+  .publicidad-2 h3 {
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+    margin-top: 0;
+    top: 50%;
+    left: 50%;
+    height: 30%;
+    width: 50%;
+    margin: -15% 0 0 -25%;
+  }
+
+  .footer {
+    margin-bottom: 0;
+  }
+}
